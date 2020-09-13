@@ -1,8 +1,15 @@
 <h1>Hello Angular! I am here for you bb</h1>
 
 
-<h2 *ngFor="let i of title"> 
-  {{i.title}}, {{i.description}}, {{i.completed}}
-</h2>
+<h2>All the tasks:</h2>
+<ul>
+  <li *ngFor="let i of title">{{i.title}},{{i.completed}}, {{i.description}}</li>
+</ul>
+
+
+
+
+<h3>Here is a the third task:</h3>
+<h4>{{title[2].title}}, {{title[2].description}}, {{title[2].completed}}</h4>
 
 <router-outlet></router-outlet>

@@ -8,6 +8,8 @@ import { HttpService } from './http.service'
 })
 export class AppComponent {
   title:any = 'app';
+  single_task = {}
+
   constructor(private _httpService: HttpService) {}
 
   ngOnInit() {
@@ -16,5 +18,15 @@ export class AppComponent {
       console.log('Here is the tasks data', data)
       this.title = data
     })
+    
   }
+
+  display_task(id) {
+    this._httpService.get_single_task(id)
+    .subscribe(data => {
+      console.log('Here is the single task', data)
+      this.single_task = data
+    })
+    
+  }  
 }
