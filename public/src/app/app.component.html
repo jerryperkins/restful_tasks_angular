@@ -1,18 +1,46 @@
 <h1>Restful Tasks API</h1>
 
-<p><button (click)="onButtonClickParam('Laundry')">Click me!</button></p>
+
 
 
 <h2 *ngIf='all_tasks_exist'>All the tasks:</h2>
 
 <button *ngIf='!all_tasks_exist' (click)='display_all_tasks()'>Show All Tasks</button>
 <ul *ngIf='all_tasks_exist'>
-  <li *ngFor="let i of title[0]">Task Title: {{i.title}}<button (click)='display_task(i._id)'>Show Task Info</button></li>
+  <li *ngFor="let i of title[0]">Task Title: {{i.title}}<button (click)='display_task(i._id)'>Show Task Info</button><button (click)='show_edit_page(i._id)'>Edit Task</button><button (click)='delete_task(i._id)'>Delete Task</button></li>
 </ul>
 
 <h3 *ngIf='single_task_exist'>Single task</h3>
 <p *ngIf='single_task_exist'>Task Title:{{single_task.title}}, Task Description: {{single_task.description}}, Has the task been completed: {{single_task.completed}}</p>
 
+<h2>Create New Task</h2>
+<form (submit)="on_submit()">
+
+  <p> {{ new_task | json }} </p>
+  <input type="text" name="title" [(ngModel)]="new_task.title" />
+  <input type="text" name="description" [(ngModel)]="new_task.description" />
+  <input type="submit" value="Create Task" />
+</form>
+
+
+<h2 *ngIf='edit_task_exist'>Edit Task</h2>
+<form *ngIf='edit_task_exist' (submit)="on_edit_task_submit(task_to_edit._id)">
+  <p> {{ edit_task | json }} </p>
+  <input type="text" name="title" [(ngModel)]="task_to_edit.title" />
+  <input type="text" name="description" [(ngModel)]="task_to_edit.description" />
+  <input type="submit" value="Update Task" />
+</form>
+
+
+
+
+<!-- <h2>Edit Task 2</h2>
+<form >
+  <p>{{ edit_task | json }}</p>
+  <input type="text" name="title">
+  <input type="text" name="description" id="">
+  <input type="submit" value="Update Task">
+</form> -->
 
 
 
