@@ -7,26 +7,46 @@ import { HttpService } from './http.service'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title:any = 'app';
+  
+  title = []
   single_task = {}
+  all_tasks_exist: boolean
+  single_task_exist: boolean
+
+  
 
   constructor(private _httpService: HttpService) {}
 
   ngOnInit() {
-    this._httpService.getTasks()
-    .subscribe(data => {
-      console.log('Here is the tasks data', data)
-      this.title = data
-    })
+    this.all_tasks_exist = false
+    this.single_task_exist = false
     
   }
 
+  display_all_tasks() {
+    this.all_tasks_exist = true
+    this._httpService.getTasks()
+    .subscribe(data => {
+      console.log('Here is the tasks data', data)
+      this.title[0] = data
+    })
+  }
+
   display_task(id) {
+    this.single_task_exist = true
     this._httpService.get_single_task(id)
     .subscribe(data => {
       console.log('Here is the single task', data)
       this.single_task = data
     })
     
-  }  
+  } 
+
+  onButtonClickParam(str: string): void { 
+    console.log(`Click event is working with num param: ${str}`);
+    // call the service's method to post the data, but make sure the data is bundled up in an object!
+    this._httpService.postToServer({title: str})
+    .subscribe(data => console.log("Got our data!", data));
+}
+
 }

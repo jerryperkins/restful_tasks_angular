@@ -1,15 +1,19 @@
-<h1>Hello Angular! I am here for you bb</h1>
+<h1>Restful Tasks API</h1>
+
+<p><button (click)="onButtonClickParam('Laundry')">Click me!</button></p>
 
 
-<h2>All the tasks:</h2>
-<ul>
-  <li *ngFor="let i of title">{{i.title}},{{i.completed}}, {{i.description}}</li>
+<h2 *ngIf='all_tasks_exist'>All the tasks:</h2>
+
+<button *ngIf='!all_tasks_exist' (click)='display_all_tasks()'>Show All Tasks</button>
+<ul *ngIf='all_tasks_exist'>
+  <li *ngFor="let i of title[0]">Task Title: {{i.title}}<button (click)='display_task(i._id)'>Show Task Info</button></li>
 </ul>
 
+<h3 *ngIf='single_task_exist'>Single task</h3>
+<p *ngIf='single_task_exist'>Task Title:{{single_task.title}}, Task Description: {{single_task.description}}, Has the task been completed: {{single_task.completed}}</p>
 
 
 
-<h3>Here is a the third task:</h3>
-<h4>{{title[2].title}}, {{title[2].description}}, {{title[2].completed}}</h4>
 
 <router-outlet></router-outlet>
