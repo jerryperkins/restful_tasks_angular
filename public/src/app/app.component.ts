@@ -15,8 +15,7 @@ export class AppComponent {
   new_task: any
   task_to_edit = {}
   edit_task_exist: boolean
-  delete_task_exist: boolean
-  task_to_delete = {}
+
 
   
 
@@ -61,15 +60,6 @@ export class AppComponent {
     .subscribe(data => {
       console.log("Task being deleted")
       this.display_all_tasks()
-    })
-  }
-
-  show_delete_page(id){
-    this.delete_task_exist = true
-    this._httpService.get_single_task(id)
-    .subscribe(data =>{
-      console.log("here is the task to delete", data)
-      this.task_to_delete = data
     })
   }
 

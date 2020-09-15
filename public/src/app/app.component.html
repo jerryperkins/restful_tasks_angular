@@ -32,6 +32,13 @@
 </form>
 
 
+<ul *ngIf='single_task_exist'>
+  <li><app-task-details [single_task]='single_task'></app-task-details></li>
+
+</ul>
+
+
+
 
 
 <!-- <h2>Edit Task 2</h2>
